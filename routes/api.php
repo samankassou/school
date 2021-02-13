@@ -1,9 +1,12 @@
 <?php
 
-use App\Http\Controllers\Api\AcademicYearController;
-use App\Http\Controllers\Api\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\CycleController;
+use App\Http\Controllers\Api\LevelController;
+use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Api\AcademicYearController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +23,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 //academic_years routes
-Route::get('/academic_years', [AcademicYearController::class, 'index'])->name('academic_years');
+Route::apiResource('academic_years', AcademicYearController::class);
 //posts routes
-Route::get('/posts', [PostController::class, 'index'])->name('posts');
+Route::apiResource('posts', PostController::class);
+//cycles routes
+Route::apiResource('cycles', CycleController::class);
+//levels routes
+Route::apiResource('levels', LevelController::class);
+//students routes
+Route::apiResource('students', StudentController::class);

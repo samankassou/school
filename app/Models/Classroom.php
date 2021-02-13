@@ -14,4 +14,8 @@ class Classroom extends Model
     {
         return $this->belongsTo('App\Models\Level');
     }
+    public function academic_year()
+    {
+        return $this->belongsTo(AcademicYear::class);
+    }
 }

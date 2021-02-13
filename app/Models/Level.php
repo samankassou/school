@@ -12,6 +12,11 @@ class Level extends Model
 
     public function cycle()
     {
-        return $this->belongsTo('App\Models\Cycle');
+        return $this->belongsTo(Cycle::class);
+    }
+
+    public function classrooms()
+    {
+        return $this->hasMany(Classroom::class);
     }
 }
