@@ -12,7 +12,11 @@ class Classroom extends Model
 
     public function level()
     {
-        return $this->belongsTo('App\Models\Level');
+        return $this->belongsTo(Level::class);
+    }
+    public function academic_year()
+    {
+        return $this->belongsTo(AcademicYear::class);
     }
     public function academic_year()
     {

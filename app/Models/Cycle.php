@@ -12,6 +12,6 @@ class Cycle extends Model
     
     public function levels()
     {
-        return $this->hasMany('App\Models\Level');
+        return $this->hasMany(Level::class);
     }
 }
