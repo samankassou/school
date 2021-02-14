@@ -18,8 +18,4 @@ class Classroom extends Model
     {
         return $this->belongsTo(AcademicYear::class);
     }
-    public function academic_year()
-    {
-        return $this->belongsTo(AcademicYear::class);
-    }
 }
