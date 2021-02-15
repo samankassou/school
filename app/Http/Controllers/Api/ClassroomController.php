@@ -15,7 +15,7 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        //
+        return Classroom::with('academicYear')->get();
     }
 
     /**

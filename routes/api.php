@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\PostController;
 use App\Http\Controllers\Api\CycleController;
 use App\Http\Controllers\Api\LevelController;
 use App\Http\Controllers\Api\StudentController;
+use App\Http\Controllers\Api\ClassroomController;
 use App\Http\Controllers\Api\AcademicYearController;
 
 /*
@@ -32,3 +33,5 @@ Route::apiResource('cycles', CycleController::class);
 Route::apiResource('levels', LevelController::class);
 //students routes
 Route::apiResource('students', StudentController::class);
+//classrooms routes
+Route::apiResource('classrooms', ClassroomController::class);

@@ -17,7 +17,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return Student::with('classrooms')->latest()->get();
+        return Student::with(['classrooms'])->latest()->get();
     }
 
     /**
@@ -42,7 +42,6 @@ class StudentController extends Controller
         $student->save();
         $student->classrooms()->save($classrooms);
         return $student;
-
     }
 
     /**
@@ -53,7 +52,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        //
+        return $student->load('classrooms');
     }
 
     /**
