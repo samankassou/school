@@ -25,7 +25,7 @@ class StudentResource extends JsonResource
             'updated_at' => $this->updated_at,
             'mothers_name' => $this->mothers_name,
             'fathers' => $this->fathers_name,
-            'classrooms' => $this->classrooms
+            'classrooms' => ClassroomResource::collection($this->classrooms)
         ];
     }
 }

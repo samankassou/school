@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ClassroomResource;
 use App\Models\Classroom;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class ClassroomController extends Controller
      */
     public function index()
     {
-        return Classroom::with('academicYear')->get();
+        return ClassroomResource::collection(Classroom::with('academicYear')->get());
     }
 
     /**
