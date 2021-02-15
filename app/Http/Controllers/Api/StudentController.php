@@ -6,6 +6,7 @@ use App\Models\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreStudentRequest;
+use App\Http\Resources\StudentResource;
 use App\Models\Classroom;
 
 class StudentController extends Controller
@@ -17,7 +18,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return Student::with(['classrooms'])->latest()->get();
+        return StudentResource::collection(Student::with(['classrooms'])->latest()->get());
     }
 
     /**
