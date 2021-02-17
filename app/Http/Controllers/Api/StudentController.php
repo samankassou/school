@@ -18,7 +18,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        return StudentResource::collection(Student::with(['classrooms'])->latest()->get());
+        return StudentResource::collection(Student::latest()->with(['classrooms'])->get());
     }
 
     /**
@@ -53,7 +53,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
-        return $student->load('classrooms');
+        return new  StudentResource($student->load('classrooms'));
     }
 
     /**
