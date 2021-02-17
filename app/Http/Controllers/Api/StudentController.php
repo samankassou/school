@@ -76,6 +76,10 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        //
+        $student->classrooms()->sync([]);
+        $student->delete();
+        return response()->json([
+            'message' => 'student deleted successfully!'
+        ]);
     }
 }
