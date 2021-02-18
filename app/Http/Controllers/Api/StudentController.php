@@ -65,7 +65,15 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        //
+        $student->update($request->all());
+        if($request->has('classrooms')){
+            $student->classrooms()->sync($request->classroms);
+        }
+        return response()->json([
+            'message' => 'student updated successfully!',
+            'data' => $student
+        ]);
+        
     }
 
     /**
@@ -76,7 +84,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
-        $student->classrooms()->sync([]);
+        $student->classrooms()->detach();
         $student->delete();
         return response()->json([
             'message' => 'student deleted successfully!'
