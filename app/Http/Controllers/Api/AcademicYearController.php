@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\AcademicYearResource;
 use App\Models\AcademicYear;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,7 @@ class AcademicYearController extends Controller
      */
     public function index()
     {
-        return AcademicYear::all();
+        return AcademicYearResource::collection(AcademicYear::all());
     }
 
     /**
@@ -47,7 +48,7 @@ class AcademicYearController extends Controller
      */
     public function show(AcademicYear $academicYear)
     {
-        //
+        return new AcademicYearResource($academicYear);
     }
 
     /**
