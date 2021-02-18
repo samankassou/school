@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\AcademicYearResource;
 use App\Models\AcademicYear;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class AcademicYearController extends Controller
@@ -20,16 +21,6 @@ class AcademicYearController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -37,7 +28,18 @@ class AcademicYearController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request);
+        $academicYear = new AcademicYear;
+        $academicYear->start_date = $request->start_date;
+        $academicYear->end_date = $request->end_date;
+        $start_year = Carbon::parse($request->start_date)->year;
+        $end_year = Carbon::parse($request->end_date)->year;
+        $academicYear->name = $start_year.'/'.$end_year;
+        $academicYear->save();
+        return response()->json([
+            'message' => 'Academic year created successfuly!',
+            'data' => $academicYear
+        ]);
     }
 
     /**
@@ -49,17 +51,6 @@ class AcademicYearController extends Controller
     public function show(AcademicYear $academicYear)
     {
         return new AcademicYearResource($academicYear);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\AcademicYear  $academicYear
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(AcademicYear $academicYear)
-    {
-        //
     }
 
     /**
@@ -82,6 +73,10 @@ class AcademicYearController extends Controller
      */
     public function destroy(AcademicYear $academicYear)
     {
-        //
+        $academicYear->Classrooms()->delete();
+        $academicYear->delete();
+        return response()->json([
+            'message' => 'Academic Year deleted!',
+        ]);
     }
 }
